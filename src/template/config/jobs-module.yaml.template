@@ -1,0 +1,3 @@
+default:
+  identifier: my-app
+  jobsDirectory: ./src
