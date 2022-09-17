@@ -4,7 +4,7 @@
 [![Testing](https://github.com/universal-packages/universal-core-background-jobs/actions/workflows/testing.yml/badge.svg)](https://github.com/universal-packages/universal-core-background-jobs/actions/workflows/testing.yml)
 [![codecov](https://codecov.io/gh/universal-packages/universal-core-background-jobs/branch/main/graph/badge.svg?token=CXPJSN8IGL)](https://codecov.io/gh/universal-packages/universal-core-background-jobs)
 
-[Redis](https://github.com/redis/node-redis) universal-core module abstraction.
+[Background Jobs](https://github.com/universal-packages/universal-background-jobs) universal-core module abstraction.
 
 ## Install
 
@@ -12,8 +12,14 @@
 npm install @universal-packages/core-background-jobs
 npm install @universal-packages/core-redis
 npm install @universal-packages/background-jobs
+npm install @redis
 ```
 
+## Initialization
+
+```shell
+ucore exec jobs-task init
+```
 ## Usage
 
 Core will expose the module `jobsModule` as a global if configured or in the core global object as in `coreModules`.
@@ -23,7 +29,7 @@ jobsModule.jobs.performLater()
 ```
 
 ```js
-core.coreModules.jobsModule.jobs.performLater()
+core.coreModules['jobs-module'].jobs.performLater()
 ```
 
 This is not really necesary since the `Jobs` interface enable Jobs classes to be able to enqueue themselves so make sure to do that instead.

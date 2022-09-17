@@ -2,7 +2,7 @@ import { JobsWorkerOptions, Worker } from '@universal-packages/background-jobs'
 import { CoreApp } from '@universal-packages/core'
 import { TerminalTransport } from '@universal-packages/logger'
 
-export default class JobsWorkerApp extends CoreApp<JobsWorkerOptions> {
+export default class WorkerApp extends CoreApp<JobsWorkerOptions> {
   public static readonly appName = 'jobs-worker'
   public static readonly description = 'Redis core module wrapper'
 

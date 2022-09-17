@@ -1,1 +1,1 @@
-export { default } from '../../src/b.Worker.universal-core-app'
+export { default } from '../../src/Worker.universal-core-app'
