@@ -5,8 +5,8 @@ import { TerminalTransport } from '@universal-packages/logger'
 export default class JobsModule extends CoreModule<JobsOptions> {
   public static readonly moduleName = 'jobs-module'
   public static readonly description = 'Background jobs core module wrapper'
+  public static readonly defaultConfig: JobsOptions = { jobsLocation: './src' }
 
-  public readonly defaultConfig: JobsOptions = { jobsLocation: './src' }
   public jobs: Jobs
 
   public async prepare(): Promise<void> {
