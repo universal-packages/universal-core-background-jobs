@@ -12,7 +12,7 @@
 npm install @universal-packages/core-background-jobs
 npm install @universal-packages/core-redis
 npm install @universal-packages/background-jobs
-npm install @redis
+npm install redis
 ```
 
 ## Initialization
