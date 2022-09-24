@@ -12,7 +12,7 @@ export default class WorkerApp extends CoreApp<JobsWorkerOptions> {
     const terminalTransport = this.logger.getTransport('terminal') as TerminalTransport
     terminalTransport.options.categoryColors['JOBS'] = 'KIWI'
 
-    this.worker = new Worker({ ...this.config, ...core.coreModules['jobs-module'].config })
+    this.worker = new Worker({ ...this.config, ...core.coreModules.jobsModule.config })
 
     this.worker.on('enqueued', ({ item }): void => {
       this.logger.publish('DEBUG', 'Job enqueued', null, 'JOBS', { metadata: item })

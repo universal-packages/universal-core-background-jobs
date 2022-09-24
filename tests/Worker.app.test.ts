@@ -25,7 +25,7 @@ describe('WorkerApp', (): void => {
     const logger = new Logger({ silence: true })
     const module = new WorkerApp({} as any, {} as any, logger, {})
 
-    global['core'] = { coreModules: { 'jobs-module': 'options' } } as any
+    global.core = { coreModules: { jobsModule: 'options' } } as any
 
     await module.prepare()
     await module.run()

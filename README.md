@@ -20,19 +20,23 @@ npm install redis
 ```shell
 ucore exec jobs-task init
 ```
-## Usage
+## Global
 
-Core will expose the module `jobsModule` as a global if configured or in the core global object as in `coreModules`.
+Core expose `Jobs` as the global subject if core `modulesAsGlobals` config is true.
 
 ```js
-jobsModule.jobs.performLater()
+jobsSubject.set()
 ```
 
 ```js
-core.coreModules['jobs-module'].jobs.performLater()
+core.coreModules.jobsModule.subject.set()
 ```
 
-This is not really necesary since the `Jobs` interface enable Jobs classes to be able to enqueue themselves so make sure to do that instead.
+### Typescript
+
+In order for typescript to see the `jobsSubject` global you need to reference the types somewhere in your project, normally `./src/globals.ts`.
+
+This is not really necessary since the `Jobs` interface enable Jobs classes to be able to enqueue themselves so make sure to do that instead.
 
 ## Typescript
 

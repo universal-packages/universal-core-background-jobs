@@ -1,1 +1,1 @@
-declare var jobsModule: import('./b.Jobs.universal-core-module').default
+declare var jobsSubject: import('@universal-packages/background-jobs').Jobs
