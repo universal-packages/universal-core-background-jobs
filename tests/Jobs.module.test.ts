@@ -24,7 +24,7 @@ describe('JobsModule', (): void => {
     const logger = new Logger({ silence: true })
     const module = new JobsModule({} as any, logger)
 
-    global['core'] = { coreModules: { 'redis-module': 'client' } } as any
+    global['core'] = { coreModules: { redisModule: 'client' } } as any
 
     await module.prepare()
 
