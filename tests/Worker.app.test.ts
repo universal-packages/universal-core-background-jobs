@@ -23,7 +23,7 @@ WorkerMock.mockImplementation((): ClassMock => new ClassMock())
 describe('WorkerApp', (): void => {
   it('behaves as expected', async (): Promise<void> => {
     const logger = new Logger({ silence: true })
-    const module = new WorkerApp({} as any, {} as any, logger, {})
+    const module = new WorkerApp({} as any, {} as any, logger)
 
     global.core = { coreModules: { jobsModule: 'options' } } as any
 

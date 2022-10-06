@@ -8,7 +8,7 @@ describe('JobsTask', (): void => {
   it('behaves as expected', async (): Promise<void> => {
     const logger = new Logger({ silence: true })
 
-    let task = new JobsTask('init', [], {}, logger, {})
+    let task = new JobsTask('init', [], {}, logger)
     await task.exec()
     expect(populateTemplates).toHaveBeenCalled()
   })
