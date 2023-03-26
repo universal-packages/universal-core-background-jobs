@@ -15,9 +15,9 @@ export default class JobsModule extends CoreModule<JobsOptions> {
 
     this.subject = new Jobs({ client: core.coreModules.redisModule.subject, ...this.config })
 
-    this.subject.on('enqueued', ({ item }): void => {
-      this.logger.publish('DEBUG', 'Job enqueued', null, 'JOBS', { metadata: item })
-      this.logger.publish('INFO', null, `${item.name} enqueued in "${item.queue}" queue`, 'JOBS', { metadata: item.payload })
+    this.subject.on('enqueued', ({ jobItem }): void => {
+      this.logger.publish('DEBUG', 'Job enqueued', null, 'JOBS', { metadata: jobItem })
+      this.logger.publish('INFO', null, `${jobItem.name} enqueued in "${jobItem.queue}" queue`, 'JOBS', { metadata: jobItem.payload })
     })
 
     await this.subject.prepare()

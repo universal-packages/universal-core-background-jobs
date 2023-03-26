@@ -5,7 +5,7 @@ import { JobsModule } from '../src'
 
 class ClassMock extends EventEmitter {
   public prepare() {
-    this.emit('enqueued', { item: {}, measurement: '' })
+    this.emit('enqueued', { jobItem: {}, measurement: '' })
     this.emit('performed', { jobItem: {}, measurement: '' })
     this.emit('retry', { jobItem: { error: {} }, measurement: '' })
     this.emit('failed', { jobItem: { error: {} }, measurement: '' })
