@@ -1,6 +1,7 @@
-import { Logger } from '@universal-packages/logger'
 import { Jobs } from '@universal-packages/background-jobs'
+import { Logger } from '@universal-packages/logger'
 import { EventEmitter } from 'stream'
+
 import { JobsModule } from '../src'
 
 class ClassMock extends EventEmitter {

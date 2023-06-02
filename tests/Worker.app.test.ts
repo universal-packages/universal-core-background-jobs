@@ -1,6 +1,7 @@
-import { Logger } from '@universal-packages/logger'
 import { Worker } from '@universal-packages/background-jobs'
+import { Logger } from '@universal-packages/logger'
 import EventEmitter from 'events'
+
 import WorkerApp from '../src/Worker.universal-core-app'
 
 class ClassMock extends EventEmitter {
