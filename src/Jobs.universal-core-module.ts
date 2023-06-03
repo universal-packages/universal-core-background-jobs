@@ -13,7 +13,7 @@ export default class JobsModule extends CoreModule<JobsOptions> {
     const terminalTransport = this.logger.getTransport('terminal') as TerminalTransport
     terminalTransport.options.categoryColors['JOBS'] = 'KIWI'
 
-    this.subject = new Jobs({ client: core.coreModules.redisModule.subject, ...this.config })
+    this.subject = new Jobs({ ...this.config })
 
     this.subject.on('enqueued', ({ jobItem }): void => {
       this.logger.publish('DEBUG', 'Job enqueued', null, 'JOBS', { metadata: jobItem })

@@ -1,1 +1,1 @@
-export { default } from '../../src/b.Jobs.universal-core-module'
+export { default } from '../../src/Jobs.universal-core-module'
