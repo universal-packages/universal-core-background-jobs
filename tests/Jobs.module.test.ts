@@ -20,7 +20,7 @@ jest.mock('@universal-packages/background-jobs')
 const JobsMock = Jobs as unknown as jest.Mock
 JobsMock.mockImplementation((): ClassMock => new ClassMock())
 
-describe('JobsModule', (): void => {
+describe(JobsModule, (): void => {
   it('behaves as expected', async (): Promise<void> => {
     const logger = new Logger({ silence: true })
     const module = new JobsModule({} as any, logger)

@@ -21,7 +21,7 @@ jest.mock('@universal-packages/background-jobs')
 const WorkerMock = Worker as unknown as jest.Mock
 WorkerMock.mockImplementation((): ClassMock => new ClassMock())
 
-describe('WorkerApp', (): void => {
+describe(WorkerApp, (): void => {
   it('behaves as expected', async (): Promise<void> => {
     const logger = new Logger({ silence: true })
     const module = new WorkerApp({} as any, {} as any, logger)

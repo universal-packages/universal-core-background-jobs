@@ -5,7 +5,7 @@ import JobsTask from '../src/Jobs.universal-core-task'
 
 jest.mock('@universal-packages/template-populator')
 
-describe('JobsTask', (): void => {
+describe(JobsTask, (): void => {
   it('behaves as expected', async (): Promise<void> => {
     const logger = new Logger({ silence: true })
 
