@@ -1,3 +1,0 @@
-default:
-  identifier: my-app
-  jobsLocation: ./example/jobs
