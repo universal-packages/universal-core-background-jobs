@@ -16,7 +16,7 @@
     "update-dependents": "umaintenance update-dependents"
   },
   "dependencies": {
-    "@universal-packages/background-jobs": "^1.6.1"
+    "@universal-packages/background-jobs": "^1.7.0"
   },
   "peerDependencies": {
     "@universal-packages/core": "^1.12.5"
