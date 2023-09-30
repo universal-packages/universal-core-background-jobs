@@ -14,17 +14,25 @@ export default class WorkerApp extends CoreApp<JobsWorkerOptions> {
 
     this.worker = new Worker({ ...this.config, ...core.coreModules.jobsModule.config })
 
-    this.worker.on('enqueued', ({ item }): void => {
-      this.logger.publish('DEBUG', 'Job enqueued', null, 'JOBS', { metadata: item })
-      this.logger.publish('INFO', null, `${item.name} enqueued in "${item.queue}" queue`, 'JOBS', { metadata: item.payload })
+    this.worker.on('enqueued', (event): void => {
+      const jobItem = event.payload.jobItem
+
+      this.logger.publish('DEBUG', 'Job enqueued', null, 'JOBS', { metadata: jobItem })
+      this.logger.publish('INFO', null, `${jobItem.name} enqueued in "${jobItem.queue}" queue`, 'JOBS', { metadata: jobItem.payload })
     })
-    this.worker.on('performed', ({ jobItem, measurement }): void => {
+    this.worker.on('performed', (event): void => {
+      const jobItem = event.payload.jobItem
+      const measurement = event.measurement
+
       this.logger.publish('DEBUG', 'Job performed successfully', null, 'JOBS', { metadata: jobItem })
       this.logger.publish('INFO', null, `${jobItem.name} performed successfully`, 'JOBS', { metadata: jobItem.payload, measurement: measurement.toString() })
     })
-    this.worker.on('retry', ({ jobItem, measurement }): void => {
+    this.worker.on('retry', (event): void => {
+      const jobItem = event.payload.jobItem
+      const measurement = event.measurement
       const error = new Error(jobItem.error.message)
       error.stack = jobItem.error.stack
+
       this.logger.publish('DEBUG', 'Retrying job', null, 'JOBS', { metadata: jobItem })
       this.logger.publish('WARNING', null, `Retrying ${jobItem.name} ${jobItem.retries}/${jobItem.maxRetries}`, 'JOBS', {
         error,
@@ -32,13 +40,19 @@ export default class WorkerApp extends CoreApp<JobsWorkerOptions> {
         measurement: measurement.toString()
       })
     })
-    this.worker.on('failed', ({ jobItem, measurement }): void => {
+    this.worker.on('failed', (event): void => {
+      const jobItem = event.payload.jobItem
+      const measurement = event.measurement
       const error = new Error(jobItem.error.message)
       error.stack = jobItem.error.stack
+
       this.logger.publish('DEBUG', 'Job failed', null, 'JOBS', { metadata: jobItem })
       this.logger.publish('ERROR', null, `${jobItem.name} failed`, 'JOBS', { error, metadata: jobItem.payload, measurement: measurement.toString() })
     })
-    this.worker.on('error', ({ error, jobItem }): void => {
+    this.worker.on('error', (event): void => {
+      const jobItem = event.payload.jobItem
+      const error = event.error
+
       this.logger.publish('DEBUG', 'Errored job', null, 'JOBS', { metadata: jobItem })
       this.logger.publish('ERROR', 'Error trying to perform a job', null, 'JOBS', { error, metadata: jobItem.payload })
     })
