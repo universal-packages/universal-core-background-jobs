@@ -32,13 +32,13 @@ jobsSubject.set()
 core.coreModules.jobsModule.subject.set()
 ```
 
-### Typescript
+## Typescript
 
 In order for typescript to see the `jobsSubject` global you need to reference the types somewhere in your project, normally `./src/globals.ts`.
 
-This is not really necessary since the `Jobs` interface enable Jobs classes to be able to enqueue themselves so make sure to do that instead.
-
-## Typescript
+```ts
+/// <reference types="@universal-packages/core-background-jobs" />
+```
 
 This library is developed in TypeScript and shipped fully typed.
 
