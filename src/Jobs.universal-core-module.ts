@@ -15,7 +15,9 @@ export default class JobsModule extends CoreModule<JobsOptions> {
 
     this.subject = new Jobs({ ...this.config })
 
-    this.subject.on('enqueued', ({ jobItem }): void => {
+    this.subject.on('enqueued', (event): void => {
+      const jobItem = event.payload.jobItem
+
       this.logger.publish('DEBUG', 'Job enqueued', null, 'JOBS', { metadata: jobItem })
       this.logger.publish('INFO', null, `${jobItem.name} enqueued in "${jobItem.queue}" queue`, 'JOBS', { metadata: jobItem.payload })
     })

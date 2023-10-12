@@ -6,10 +6,10 @@ import { JobsModule } from '../src'
 
 class ClassMock extends EventEmitter {
   public prepare() {
-    this.emit('enqueued', { jobItem: {}, measurement: '' })
-    this.emit('performed', { jobItem: {}, measurement: '' })
-    this.emit('retry', { jobItem: { error: {} }, measurement: '' })
-    this.emit('failed', { jobItem: { error: {} }, measurement: '' })
+    this.emit('enqueued', { payload: { jobItem: {} }, measurement: '' })
+    this.emit('performed', { payload: { jobItem: {} }, measurement: '' })
+    this.emit('retry', { payload: { jobItem: { error: {} } }, measurement: '' })
+    this.emit('failed', { payload: { jobItem: { error: {} } }, measurement: '' })
   }
   public start = jest.fn()
   public stop = jest.fn()
