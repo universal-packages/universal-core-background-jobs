@@ -34,7 +34,7 @@ core.coreModules.jobsModule.subject.set()
 
 ## Typescript
 
-In order for typescript to see the `jobsSubject` global you need to reference the types somewhere in your project, normally `./src/globals.ts`.
+In order for typescript to see the global types you need to reference the types somewhere in your project, normally `./src/globals.d.ts`.
 
 ```ts
 /// <reference types="@universal-packages/core-background-jobs" />
