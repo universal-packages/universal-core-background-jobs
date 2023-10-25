@@ -1,0 +1,3 @@
+jobsLocation: './tests/__fixtures__/jobs'
+queue: test
+waitTimeIfEmptyRound: 0

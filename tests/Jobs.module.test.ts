@@ -1,34 +1,19 @@
-import { Jobs } from '@universal-packages/background-jobs'
-import { Logger } from '@universal-packages/logger'
-import { EventEmitter } from 'stream'
-
 import { JobsModule } from '../src'
+import GoodJob from './__fixtures__/jobs/Good.job'
 
-class ClassMock extends EventEmitter {
-  public prepare() {
-    this.emit('enqueued', { payload: { jobItem: {} }, measurement: '' })
-    this.emit('performed', { payload: { jobItem: {} }, measurement: '' })
-    this.emit('retry', { payload: { jobItem: { error: {} } }, measurement: '' })
-    this.emit('failed', { payload: { jobItem: { error: {} } }, measurement: '' })
-  }
-  public start = jest.fn()
-  public stop = jest.fn()
-  public release = jest.fn()
-}
-
-jest.mock('@universal-packages/background-jobs')
-const JobsMock = Jobs as unknown as jest.Mock
-JobsMock.mockImplementation((): ClassMock => new ClassMock())
+jestCore.runBare({
+  config: { location: './tests/__fixtures__/config-test' },
+  modules: { location: './tests/__fixtures__' },
+  logger: { silence: true }
+})
 
 describe(JobsModule, (): void => {
   it('behaves as expected', async (): Promise<void> => {
-    const logger = new Logger({ silence: true })
-    const module = new JobsModule({} as any, logger)
+    expect(global.jobsSubject).not.toBeUndefined()
+    expect(global.jobsSubject.options).toEqual({ additional: [], jobsLocation: './tests/__fixtures__/jobs', queue: 'test', waitTimeIfEmptyRound: 0 })
 
-    global['core'] = { coreModules: { redisModule: 'client' } } as any
+    await GoodJob.performLater({ foo: 'bar' })
 
-    await module.prepare()
-
-    await module.release()
+    expect(GoodJob).toHaveBeenEnqueuedWith({ foo: 'bar' })
   })
 })

@@ -7,10 +7,38 @@ jest.mock('@universal-packages/template-populator')
 
 describe(JobsTask, (): void => {
   it('behaves as expected', async (): Promise<void> => {
-    const logger = new Logger({ silence: true })
+    await jestCore.execTask(
+      'jobs-task',
+      'init',
+      [],
+      { f: true },
+      {
+        config: { location: './tests/__fixtures__/config-test' },
+        modules: { location: './tests/__fixtures__' },
+        tasks: { location: './tests/__fixtures__' },
+        logger: { silence: true }
+      }
+    )
 
-    let task = new JobsTask('init', [], {}, logger)
-    await task.exec()
-    expect(populateTemplates).toHaveBeenCalled()
+    expect(populateTemplates).toHaveBeenCalledWith(expect.stringMatching(/universal-core-background-jobs\/src\/template/), './src', { override: true })
+  })
+
+  it('throws an error if directive is not recognized', async (): Promise<void> => {
+    jest.spyOn(process, 'exit').mockImplementation()
+
+    await jestCore.execTask(
+      'jobs-task',
+      'nop',
+      [],
+      { f: true },
+      {
+        config: { location: './tests/__fixtures__/config-test' },
+        modules: { location: './tests/__fixtures__' },
+        tasks: { location: './tests/__fixtures__' },
+        logger: { silence: true }
+      }
+    )
+
+    expect(process.exit).toHaveBeenCalledWith(1)
   })
 })
