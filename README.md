@@ -20,16 +20,25 @@ npm install redis
 ```shell
 ucore exec jobs-task init
 ```
+
+## Performer
+
+```shell
+ucore run jobs-performer
+```
+
 ## Global
 
 Core expose `Jobs` as the global subject if core `modulesAsGlobals` config is true.
 
 ```js
-jobsSubject.set()
+jobsSubject
 ```
 
+Or
+
 ```js
-core.coreModules.jobsModule.subject.set()
+core.coreModules.jobsModule.subject
 ```
 
 ## Typescript

@@ -1,9 +1,9 @@
 import { sleep } from '@universal-packages/time-measurer'
 
-import WorkerApp from '../__fixtures__/Worker.app'
+import JobsApp from '../__fixtures__/Jobs.app'
 import FailingJob from '../__fixtures__/failing/Failing.job'
 
-jestCore.runApp('jobs-worker', {
+jestCore.runApp('jobs-performer', {
   coreConfigOverride: {
     apps: { location: './tests/__fixtures__' },
     config: { location: './tests/__fixtures__/config-failing' },
@@ -12,7 +12,7 @@ jestCore.runApp('jobs-worker', {
   }
 })
 
-describe(WorkerApp, (): void => {
+describe(JobsApp, (): void => {
   it('receives events for retries and failings', async (): Promise<void> => {
     await FailingJob.performLater()
     await sleep(3000)

@@ -1,3 +1,0 @@
-jobsLocation: './tests/__fixtures__/jobs'
-queue: memory
-waitTimeIfEmptyRound: 0
