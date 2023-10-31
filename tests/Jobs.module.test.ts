@@ -13,9 +13,10 @@ describe(JobsModule, (): void => {
   it('behaves as expected', async (): Promise<void> => {
     expect(global.jobsSubject).not.toBeUndefined()
     expect(global.jobsSubject.options).toEqual({
-      additional: [],
       concurrentPerformers: 1,
       jobsLocation: './tests/__fixtures__/jobs',
+      loaders: [],
+      loaderOptions: {},
       queue: 'test',
       queuePriority: {},
       waitTimeIfEmptyRound: 0
