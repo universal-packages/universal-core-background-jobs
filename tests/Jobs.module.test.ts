@@ -15,7 +15,7 @@ describe(JobsModule, (): void => {
     expect(global.jobsSubject.options).toEqual({
       concurrentPerformers: 1,
       jobsLocation: './tests/__fixtures__/jobs',
-      loaders: [],
+      loaders: {},
       loaderOptions: {},
       queue: 'test',
       queuePriority: {},
