@@ -2,6 +2,7 @@ import { Jobs, JobsOptions } from '@universal-packages/background-jobs'
 import { CoreApp } from '@universal-packages/core'
 
 import { LOG_CONFIGURATION } from './LOG_CONFIGURATION'
+import { updatePresenterDoc } from './updatePresenterDoc'
 
 export default class JobsApp extends CoreApp<JobsOptions> {
   public static readonly appName = 'jobs-performer'
@@ -139,6 +140,8 @@ export default class JobsApp extends CoreApp<JobsOptions> {
         LOG_CONFIGURATION
       )
     })
+
+    this.setTerminalPresenter()
   }
 
   public async run(): Promise<void> {
@@ -147,5 +150,11 @@ export default class JobsApp extends CoreApp<JobsOptions> {
 
   public async stop(): Promise<void> {
     await this.jobs.stop()
+  }
+
+  private setTerminalPresenter(): void {
+    core.TerminalPresenter.prependDocument('JOBS-DOC', { rows: [{ blocks: [{ text: ' ' }] }] })
+
+    updatePresenterDoc()
   }
 }

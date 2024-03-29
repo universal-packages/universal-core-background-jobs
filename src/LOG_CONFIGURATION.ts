@@ -1,1 +1,1 @@
-export const LOG_CONFIGURATION = { categoryBackgroundColor: 'dark-green', categoryColor: 'white' }
+export const LOG_CONFIGURATION = { categoryBackgroundColor: 'sea-green', categoryColor: 'white' }
