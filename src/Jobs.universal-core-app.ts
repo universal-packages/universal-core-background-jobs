@@ -1,8 +1,9 @@
 import { Jobs, JobsOptions } from '@universal-packages/background-jobs'
 import { CoreApp } from '@universal-packages/core'
+import { prependRealTimeDocument } from '@universal-packages/terminal-presenter'
 
 import { LOG_CONFIGURATION } from './LOG_CONFIGURATION'
-import { updatePresenterDoc } from './updatePresenterDoc'
+import { updatePresenterDoc } from './common/updatePresenterDoc'
 
 export default class JobsApp extends CoreApp<JobsOptions> {
   public static readonly appName = 'jobs-performer'
@@ -153,7 +154,7 @@ export default class JobsApp extends CoreApp<JobsOptions> {
   }
 
   private setTerminalPresenter(): void {
-    core.TerminalPresenter.prependDocument('JOBS-DOC', { rows: [{ blocks: [{ text: ' ' }] }] })
+    prependRealTimeDocument('JOBS-DOC', { rows: [{ blocks: [{ text: ' ' }] }] })
 
     updatePresenterDoc()
   }

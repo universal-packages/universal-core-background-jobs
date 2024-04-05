@@ -2,6 +2,7 @@ import { Jobs } from '@universal-packages/background-jobs'
 import { EnvironmentTagBlock } from '@universal-packages/logger-terminal-presenter'
 import { Color, GreenColor, OrangeColor, PinkColor, PurpleColor, WhiteColor } from '@universal-packages/terminal-document'
 import { LoadingBlock, PresenterRowDescriptor } from '@universal-packages/terminal-presenter'
+import { updateRealTimeDocument } from '@universal-packages/terminal-presenter'
 
 const ENVIRONMENT_COLORS: Record<string, { primary: Color; secondary: Color }> = {
   development: { primary: OrangeColor.OrangeRed, secondary: WhiteColor.White },
@@ -80,5 +81,5 @@ export function updatePresenterDoc() {
 
   documentRows.push(statsRow)
 
-  core.TerminalPresenter.updateDocument('JOBS-DOC', { rows: documentRows })
+  updateRealTimeDocument('JOBS-DOC', { rows: documentRows })
 }
