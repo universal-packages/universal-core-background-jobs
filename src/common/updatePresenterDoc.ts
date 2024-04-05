@@ -1,18 +1,12 @@
 import { Jobs } from '@universal-packages/background-jobs'
 import { EnvironmentTagBlock } from '@universal-packages/logger-terminal-presenter'
-import { Color, GreenColor, OrangeColor, PinkColor, PurpleColor, WhiteColor } from '@universal-packages/terminal-document'
+import { GreenColor } from '@universal-packages/terminal-document'
 import { LoadingBlock, PresenterRowDescriptor } from '@universal-packages/terminal-presenter'
-import { updateRealTimeDocument } from '@universal-packages/terminal-presenter'
-
-const ENVIRONMENT_COLORS: Record<string, { primary: Color; secondary: Color }> = {
-  development: { primary: OrangeColor.OrangeRed, secondary: WhiteColor.White },
-  production: { primary: PurpleColor.DarkMagenta, secondary: WhiteColor.White },
-  test: { primary: PinkColor.MediumVioletRed, secondary: WhiteColor.White },
-  other: { primary: PurpleColor.Purple, secondary: WhiteColor.White }
-}
+import { OPTIONS, updateRealTimeDocument } from '@universal-packages/terminal-presenter'
 
 export function updatePresenterDoc() {
-  const ENVIRONMENT_COLOR = ENVIRONMENT_COLORS[process.env.NODE_ENV] || ENVIRONMENT_COLORS.other
+  if (!OPTIONS.enabled) return
+
   const JOBS_SUBJECT = core.coreModules['jobsModule'].subject as Jobs
   const primaryColor = GreenColor.SeaGreen
   const documentRows: PresenterRowDescriptor[] = []
