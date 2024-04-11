@@ -154,7 +154,7 @@ export default class JobsApp extends CoreApp<JobsOptions> {
   }
 
   private setTerminalPresenter(): void {
-    prependRealTimeDocument('JOBS-DOC', { rows: [{ blocks: [{ text: ' ' }] }] })
+    core.terminalPresenter.prependRealTimeDocument('JOBS-DOC', { rows: [{ blocks: [{ text: ' ' }] }] })
 
     updatePresenterDoc()
   }

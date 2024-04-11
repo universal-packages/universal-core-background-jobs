@@ -75,5 +75,5 @@ export function updatePresenterDoc() {
 
   documentRows.push(statsRow)
 
-  updateRealTimeDocument('JOBS-DOC', { rows: documentRows })
+  core.terminalPresenter.updateRealTimeDocument('JOBS-DOC', { rows: documentRows })
 }
