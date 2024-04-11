@@ -2,10 +2,9 @@ import { Jobs } from '@universal-packages/background-jobs'
 import { EnvironmentTagBlock } from '@universal-packages/logger-terminal-presenter'
 import { GreenColor } from '@universal-packages/terminal-document'
 import { LoadingBlock, PresenterRowDescriptor } from '@universal-packages/terminal-presenter'
-import { OPTIONS, updateRealTimeDocument } from '@universal-packages/terminal-presenter'
 
 export function updatePresenterDoc() {
-  if (!OPTIONS.enabled) return
+  if (!core.terminalPresenter.OPTIONS.enabled) return
 
   const JOBS_SUBJECT = core.coreModules['jobsModule'].subject as Jobs
   const primaryColor = GreenColor.SeaGreen

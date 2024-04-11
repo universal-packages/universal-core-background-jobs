@@ -1,6 +1,5 @@
 import { Jobs, JobsOptions } from '@universal-packages/background-jobs'
 import { CoreApp } from '@universal-packages/core'
-import { prependRealTimeDocument } from '@universal-packages/terminal-presenter'
 
 import { LOG_CONFIGURATION } from './LOG_CONFIGURATION'
 import { updatePresenterDoc } from './common/updatePresenterDoc'
