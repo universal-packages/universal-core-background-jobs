@@ -17,7 +17,7 @@ npm install @universal-packages/core
 ## Initialization
 
 ```shell
-ucore exec jobs-task init
+ucore initialize background-jobs
 ```
 
 ## Performer
