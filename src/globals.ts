@@ -1,1 +1,1 @@
-declare var jobsSubject: import('@universal-packages/background-jobs').Jobs
+declare var backgroundJobsSubject: import('@universal-packages/background-jobs').BackgroundJobs

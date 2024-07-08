@@ -1,4 +1,4 @@
-import { Jobs } from '@universal-packages/background-jobs'
+import { BackgroundJobs } from '@universal-packages/background-jobs'
 import { EnvironmentTagBlock } from '@universal-packages/logger-terminal-presenter'
 import { GreenColor } from '@universal-packages/terminal-document'
 import { LoadingBlock, PresenterRowDescriptor } from '@universal-packages/terminal-presenter'
@@ -6,7 +6,7 @@ import { LoadingBlock, PresenterRowDescriptor } from '@universal-packages/termin
 export function updatePresenterDoc() {
   if (!core.terminalPresenter.OPTIONS.enabled) return
 
-  const JOBS_SUBJECT = core.coreModules['jobsModule'].subject as Jobs
+  const JOBS_SUBJECT = core.coreModules['backgroundJobs'].subject as BackgroundJobs
   const primaryColor = GreenColor.SeaGreen
   const documentRows: PresenterRowDescriptor[] = []
 
@@ -25,7 +25,7 @@ export function updatePresenterDoc() {
   headerRow.blocks.push({
     color: primaryColor,
     style: 'bold',
-    text: 'Jobs Performer',
+    text: 'Background Jobs',
     width: 'fit'
   })
   headerRow.blocks.push({ text: ' ', width: 'fit' })

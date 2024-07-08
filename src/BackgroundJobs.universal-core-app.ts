@@ -1,19 +1,19 @@
-import { Jobs, JobsOptions } from '@universal-packages/background-jobs'
+import { BackgroundJobs, BackgroundJobsOptions } from '@universal-packages/background-jobs'
 import { CoreApp } from '@universal-packages/core'
 
 import { LOG_CONFIGURATION } from './LOG_CONFIGURATION'
 import { updatePresenterDoc } from './common/updatePresenterDoc'
 
-export default class JobsApp extends CoreApp<JobsOptions> {
-  public static readonly appName = 'jobs-performer'
-  public static readonly description = 'Background jobs jobs core app'
+export default class BackgroundJobsApp extends CoreApp<BackgroundJobsOptions> {
+  public static readonly appName = 'background-jobs'
+  public static readonly description = 'Background jobs core app'
 
-  private jobs: Jobs
+  private backgroundJobs: BackgroundJobs
 
   public async prepare(): Promise<void> {
-    this.jobs = core.coreModules.jobsModule.subject
+    this.backgroundJobs = core.coreModules.backgroundJobs.subject
 
-    this.jobs.on('enqueued', (event): void => {
+    this.backgroundJobs.on('enqueued', (event): void => {
       const jobItem = event.payload.jobItem
 
       this.logger.log(
@@ -36,7 +36,7 @@ export default class JobsApp extends CoreApp<JobsOptions> {
         LOG_CONFIGURATION
       )
     })
-    this.jobs.on('performed', (event): void => {
+    this.backgroundJobs.on('performed', (event): void => {
       const jobItem = event.payload.jobItem
       const measurement = event.measurement
 
@@ -61,7 +61,7 @@ export default class JobsApp extends CoreApp<JobsOptions> {
         LOG_CONFIGURATION
       )
     })
-    this.jobs.on('retry', (event): void => {
+    this.backgroundJobs.on('retry', (event): void => {
       const jobItem = event.payload.jobItem
       const measurement = event.measurement
       const error = new Error(jobItem.error.message)
@@ -89,7 +89,7 @@ export default class JobsApp extends CoreApp<JobsOptions> {
         LOG_CONFIGURATION
       )
     })
-    this.jobs.on('failed', (event): void => {
+    this.backgroundJobs.on('failed', (event): void => {
       const jobItem = event.payload.jobItem
       const measurement = event.measurement
       const error = new Error(jobItem.error.message)
@@ -116,7 +116,7 @@ export default class JobsApp extends CoreApp<JobsOptions> {
         LOG_CONFIGURATION
       )
     })
-    this.jobs.on('error', (event): void => {
+    this.backgroundJobs.on('error', (event): void => {
       const jobItem = event.payload.jobItem
       const error = event.error
 
@@ -145,11 +145,11 @@ export default class JobsApp extends CoreApp<JobsOptions> {
   }
 
   public async run(): Promise<void> {
-    await this.jobs.run()
+    await this.backgroundJobs.run()
   }
 
   public async stop(): Promise<void> {
-    await this.jobs.stop()
+    await this.backgroundJobs.stop()
   }
 
   private setTerminalPresenter(): void {

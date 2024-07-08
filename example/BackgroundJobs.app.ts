@@ -1,7 +1,7 @@
-import JA from '../src/Jobs.universal-core-app'
+import JA from '../src/BackgroundJobs.universal-core-app'
 import GoodJob from './jobs/Good.job'
 
-export default class JobsApp extends JA {
+export default class BackgroundJobsApp extends JA {
   private enqueueTimeout: NodeJS.Timeout
 
   public async prepare(): Promise<void> {

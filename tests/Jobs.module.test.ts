@@ -1,4 +1,4 @@
-import { JobsModule } from '../src'
+import { BackgroundJobsModule } from '../src'
 import GoodJob from './__fixtures__/jobs/Good.job'
 
 jestCore.runBare({
@@ -9,10 +9,10 @@ jestCore.runBare({
   }
 })
 
-describe(JobsModule, (): void => {
+describe(BackgroundJobsModule, (): void => {
   it('behaves as expected', async (): Promise<void> => {
-    expect(global.jobsSubject).not.toBeUndefined()
-    expect(global.jobsSubject.options).toEqual({
+    expect(global.backgroundJobsSubject).not.toBeUndefined()
+    expect(global.backgroundJobsSubject.options).toEqual({
       concurrentPerformers: 1,
       jobsLocation: './tests/__fixtures__/jobs',
       loaders: {},

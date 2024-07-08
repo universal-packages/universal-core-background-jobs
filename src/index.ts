@@ -1,3 +1,3 @@
 import './globals'
 
-export { default as JobsModule } from './Jobs.universal-core-module'
+export { default as BackgroundJobsModule } from './BackgroundJobs.universal-core-module'

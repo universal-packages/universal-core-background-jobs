@@ -1,10 +1,10 @@
 import { sleep } from '@universal-packages/time-measurer'
 
-import JobsApp from '../__fixtures__/Jobs.app'
+import JobsApp from '../__fixtures__/BackgroundJobs.app'
 import ExcellentJob from '../__fixtures__/jobs/Excellent.job'
 import GoodJob from '../__fixtures__/jobs/Good.job'
 
-jestCore.runApp('jobs-performer', {
+jestCore.runApp('background-jobs', {
   coreConfigOverride: {
     apps: { location: './tests/__fixtures__' },
     config: { location: './tests/__fixtures__/config-jobs' },
@@ -14,16 +14,13 @@ jestCore.runApp('jobs-performer', {
 })
 
 describe(JobsApp, (): void => {
-  it('receives events for errors', async (): Promise<void> => {
-    const performer = jobsSubject['performers'][0]
-    delete performer.options.jobs['GoodJob']
-
+  it('receives events for jobs enqueued and performed', async (): Promise<void> => {
     await GoodJob.performLater({ good: true })
     await ExcellentJob.performLater({ excellent: true })
 
     await sleep(1000)
 
-    expect(GoodJob.performJestFn).not.toHaveBeenCalledWith({ good: true })
+    expect(GoodJob.performJestFn).toHaveBeenCalledWith({ good: true })
     expect(ExcellentJob.performJestFn).toHaveBeenCalledWith({ excellent: true })
   })
 })
