@@ -4,7 +4,7 @@ import JobsApp from '../__fixtures__/BackgroundJobs.app'
 import ExcellentJob from '../__fixtures__/jobs/Excellent.job'
 import GoodJob from '../__fixtures__/jobs/Good.job'
 
-jestCore.runApp('background-jobs', {
+coreJest.runApp('background-jobs', {
   coreConfigOverride: {
     apps: { location: './tests/__fixtures__' },
     config: { location: './tests/__fixtures__/config-jobs' },

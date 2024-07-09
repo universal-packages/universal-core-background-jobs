@@ -3,7 +3,7 @@ import { sleep } from '@universal-packages/time-measurer'
 import JobsApp from '../__fixtures__/BackgroundJobs.app'
 import FailingJob from '../__fixtures__/failing/Failing.job'
 
-jestCore.runApp('background-jobs', {
+coreJest.runApp('background-jobs', {
   coreConfigOverride: {
     apps: { location: './tests/__fixtures__' },
     config: { location: './tests/__fixtures__/config-failing' },
