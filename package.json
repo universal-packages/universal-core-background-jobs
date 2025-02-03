@@ -19,7 +19,7 @@
     "@universal-packages/background-jobs": "^1.12.3"
   },
   "peerDependencies": {
-    "@universal-packages/core": "^1.32.0"
+    "@universal-packages/core": "^1.32.1"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
@@ -27,7 +27,7 @@
     "@types/node": "^18.11.9",
     "@universal-packages/background-jobs-jest": "^1.2.3",
     "@universal-packages/core-jest": "^1.5.7",
-    "@universal-packages/maintenance": "^1.7.3",
+    "@universal-packages/maintenance": "^1.7.4",
     "jest": "^29.7.0",
     "prettier": "^3.4.1",
     "ts-jest": "^29.2.5",
